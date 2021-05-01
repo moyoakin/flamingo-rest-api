@@ -6,18 +6,21 @@ import connectDB from "./config/db.js";
 
 //Route imports
 
-import userRoutes from "./route/userRoutes.js"
+import userRoutes from "./route/userRoutes.js";
+
+import setupProdMiddleWare from "./config/prod.js";
 
 dotenv.config();
 connectDB();
 
 const app = express();
-const PORT = 8080;
+
+setupProdMiddleWare(app);
+
+const port = process.env.port || 8030;
 
 app.use(express.json());
 
-app.use("/api/users" , userRoutes);
+app.use("/api/users", userRoutes);
 
-
-
-app.listen(PORT, () => console.log(`server started on Port: ${PORT}`));
+app.listen(port, () => console.log(`server started on Port: ${port}`));

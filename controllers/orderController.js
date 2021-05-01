@@ -16,12 +16,38 @@ const addOrder = asyncHandler(async (req, res) => {
   });
 
   const newOrder = await order.save();
-  res.status(201).json(newOrder);
+  res.status(201).json(addOrder);
 
-const addOrder = await order + 1;
-res.status(201).json(addOrder)
-  
 });
+
+  // Delete order
+
+const deleteOrder = asyncHandler(async (req, res) => {
+  const delOrder = await Order.findById(req.params.id);
+
+  if(delOrder){
+    await Order.remove();
+    res.json({message: "Order Deleted"})
+  }else{
+    res.status(404);
+    throw new Error("Your cart is empty");
+  }
+})
+
+// get order by ID
+
+const findOrder = asyncHandler((req, res) => {
+  const checkedOrder = await Order.findById(req.params.id);
+
+  if(checkedOrder){
+    res.status(201).json(checkedOrder)
+  }else{
+    res.status(404);
+    throw new Error("No order found");
+  }
+})
+  
+
 
 //define the req.body..
 //check if the array is not empty..
