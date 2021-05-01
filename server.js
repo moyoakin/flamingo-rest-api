@@ -17,7 +17,7 @@ const app = express();
 
 setupProdMiddleWare(app);
 
-const port = process.env.port || 8030;
+const port = process.env.PORT || 8030;
 
 app.use(express.json());
 
