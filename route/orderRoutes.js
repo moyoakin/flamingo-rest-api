@@ -1,8 +1,23 @@
-import express from "express"
-import { addOrder } from "../controllers/orderController.js"
+import express from "express";
+import {
+  addOrder,
+  deleteOrder,
+  findOrder,
+} from "../controllers/orderController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
-const router = express.Router();
+const orderRoute = express.Router();
 
-router.route("/").get(protect, addOrder);
+orderRoute.route("/addOrder").post(protect, addOrder);
 
+orderRoute.route("/deleteOrder").delete(protect, deleteOrder);
+
+orderRoute.route("/deleteOrder").get(protect, findOrder);
+
+orderRoute
+  .route("/:id")
+  .post(protect, addOrder)
+  .delete(protect, deleteOrder)
+  .get(protect, findOrder);
+
+export default orderRoute;

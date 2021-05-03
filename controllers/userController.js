@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import User from "../models/usermodel.js";
+import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
 const signUpUser = asyncHandler(async (req, res) => {
@@ -89,24 +89,32 @@ const updateUser = asyncHandler(async (req, res) => {
       lastName: updatedUser.lastName,
       email: updatedUser.email,
     });
-  } else{
-      res.status(404)
-      throw new Error("user not found");
+  } else {
+    res.status(404);
+    throw new Error("user not found");
   }
 });
 
 // Delete a user
 // ROute Delete/api/users/:id
 
-const deleteUser = asyncHandler( async(req, res) => {
-    const user = await User.findById(req.params.id);
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
 
-    if(user){
-        await User.remove();
-    }else{
-        req.status(404);
-        throw new Error("User not deleted");
-    }
-})
+  if (user) {
+    await User.remove();
+    res.status(201);
+  } else {
+    res.status(404);
+    throw new Error("User not deleted");
+  }
+});
 
-export { signUpUser , userSignin , getUsers, getUserById, updateUser, deleteUser }
+export {
+  signUpUser,
+  userSignin,
+  getUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+};
