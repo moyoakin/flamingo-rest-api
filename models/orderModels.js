@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import user from './userModel';
+import user from './usermodel';
 
 const orderSchema = mongoose.Schema({
     user:{
