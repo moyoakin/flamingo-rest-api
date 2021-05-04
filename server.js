@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 import connectDB from "./config/db.js";
 
-import orderRoute from "./route/orderRoutes.js"
+import orderRoutes from "./route/orderRoutes.js"
 
 //Route imports
 
