@@ -36,7 +36,7 @@ const deleteOrder = asyncHandler(async (req, res) => {
 
 // get order by ID
 
-const findOrder = asyncHandler((req, res) => {
+const findOrder = asyncHandler(async(req, res) => {
   const checkedOrder = await Order.findById(req.params.id);
 
   if(checkedOrder){
