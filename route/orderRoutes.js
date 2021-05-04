@@ -10,13 +10,10 @@ const orderRoute = express.Router();
 
 orderRoute.route("/addOrder").post(protect, addOrder);
 
-orderRoute.route("/deleteOrder").delete(protect, deleteOrder);
-
-orderRoute.route("/deleteOrder").get(protect, findOrder);
 
 orderRoute
   .route("/:id")
-  .post(protect, addOrder)
+  .post(protect, updateOrder)
   .delete(protect, deleteOrder)
   .get(protect, findOrder);
 
