@@ -16,31 +16,31 @@ const addOrder = asyncHandler(async (req, res) => {
   });
 
   const newOrder = await order.save();
-  res.status(201).json(addOrder);
+  res.status(201).json(newOrder);
 
 });
 
   // Delete order
 
 const deleteOrder = asyncHandler(async (req, res) => {
-  const delOrder = await Order.findById(req.params.id);
+  const order = await Order.findById(req.params.id);
 
-  if(delOrder){
-    await Order.remove();
+  if(order){
+    await order.remove();
     res.json({message: "Order Deleted"})
   }else{
     res.status(404);
-    throw new Error("Your cart is empty");
+    throw new Error("No order to delete");
   }
 })
 
 // get order by ID
 
-const findOrder = asyncHandler(async(req, res) => {
-  const checkedOrder = await Order.findById(req.params.id);
+const findOrderById = asyncHandler(async(req, res) => {
+  const order = await Order.findById(req.params.id);
 
-  if(checkedOrder){
-    res.status(201).json(checkedOrder)
+  if(order){
+    res.status(201).json(order)
   }else{
     res.status(404);
     throw new Error("No order found");
@@ -48,7 +48,7 @@ const findOrder = asyncHandler(async(req, res) => {
 })
 
 
-export {addOrder, deleteOrder,findOrder}
+export {addOrder, deleteOrder,findOrderById}
 
   
 

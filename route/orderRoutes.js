@@ -2,7 +2,7 @@ import express from "express";
 import {
   addOrder,
   deleteOrder,
-  findOrder,
+  findOrderById,
 } from "../controllers/orderController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
@@ -13,6 +13,6 @@ orderRoutes.route("/").post(protect, addOrder);
 orderRoutes
   .route("/:id")
   .delete(protect, deleteOrder)
-  .get(protect, findOrder);
+  .get(protect, findOrderById);
 
 export default orderRoutes;
