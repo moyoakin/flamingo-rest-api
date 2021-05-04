@@ -11,7 +11,7 @@ const addOrder = asyncHandler(async (req, res) => {
   }
 
   const order = new Order({
-    items,
+    items:items,
     user: req.user._id,
   });
 
