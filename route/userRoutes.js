@@ -17,7 +17,6 @@ router.route("/signUp").post(signUpUser);
 
 router.route("/login").post(userSignin);
 
-router.route("/deleteUser").delete(deleteUser);
 
 router
   .route("/:id")
