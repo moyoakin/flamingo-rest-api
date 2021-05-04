@@ -1,35 +1,32 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema({
-    user:{
-        
-        type: mongoose.Schema.Types.ObjectId,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
+
+  items: [
+    {
+      itemName: {
+        type: String,
+        require: true,
+      },
+
+      itemQty: {
+        type: Number,
         required: true,
-        ref: "User"
+      },
+
+      itemPrice: {
+        type: Number,
+        required: true,
+      },
     },
+  ],
+});
 
-    items:[{
-
-        itemName:{
-            type:String,
-            require:true,
-        },
-
-        itemQty:{
-            type: Number,
-            required: true,
-        },
-
-        itemPrice:{
-            type: Number,
-            required: true
-        }
-      
-    }]
-       
-    
-})
-
-const Order = moongoose.Schema("Order" , orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 
 export default Order;

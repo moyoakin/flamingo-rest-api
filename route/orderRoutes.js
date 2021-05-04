@@ -6,14 +6,13 @@ import {
 } from "../controllers/orderController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
-const orderRoute = express.Router();
+const orderRoutes = express.Router();
 
-orderRoute.route("/").post(protect, addOrder);
+orderRoutes.route("/").post(protect, addOrder);
 
-orderRoute
+orderRoutes
   .route("/:id")
-  .post(protect, updateOrder)
   .delete(protect, deleteOrder)
   .get(protect, findOrder);
 
-export default orderRoute;
+export default orderRoutes;

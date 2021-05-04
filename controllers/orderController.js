@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Order from "../models/orderModels.js";
-import { request } from "express";
+
 
 const addOrder = asyncHandler(async (req, res) => {
   const { items } = req.body;
@@ -12,7 +12,7 @@ const addOrder = asyncHandler(async (req, res) => {
 
   const order = new Order({
     items,
-    user: request.user._id,
+    user: req.user._id,
   });
 
   const newOrder = await order.save();
@@ -47,6 +47,8 @@ const findOrder = asyncHandler(async(req, res) => {
   }
 })
 
+
+export {addOrder, deleteOrder,findOrder}
 
   
 
