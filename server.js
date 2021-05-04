@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 
 import connectDB from "./config/db.js";
 
+import orderRoute from "./route/orderRoutes.js"
+
 //Route imports
 
 import userRoutes from "./route/userRoutes.js";
@@ -22,5 +24,6 @@ const port = process.env.PORT || 8030;
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.listen(port, () => console.log(`server started on Port: ${port}`));
