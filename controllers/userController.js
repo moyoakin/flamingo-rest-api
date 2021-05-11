@@ -55,7 +55,7 @@ const userSignin = asyncHandler(async (req, res) => {
 //Getting list of all users
 
 const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({});
+  const users = await User.find(req.params.id);
   res.json(users);
 });
 
@@ -104,6 +104,7 @@ const deleteUser = asyncHandler(async (req, res) => {
   if (user) {
     await user.remove();
     res.status(201);
+    res.json("user Deleted");
   } else {
     res.status(404);
     throw new Error("User not deleted");

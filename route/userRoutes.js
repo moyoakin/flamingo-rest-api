@@ -17,11 +17,10 @@ router.route("/signUp").post(signUpUser);
 
 router.route("/login").post(userSignin);
 
-
 router
   .route("/:id")
-  .get(protect, getUserById)
   .put(protect, updateUser)
-  .delete(protect, deleteUser);
+  .delete(protect, deleteUser)
+  .get(protect, getUserById);
 
-  export default router;
+export default router;
