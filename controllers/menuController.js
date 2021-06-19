@@ -2,22 +2,46 @@ import asyncHandler from 'express-async-handler';
 import {Menu} from "../models/menuModel.js";
 
 const addMenu = asyncHandler(async(req,res)=>{
-    const {menuItem, manuItemPrice} = req.body;
-    console.log(menuItem);
+    const { menu } = req.body;
+    console.log(menu);
 
-    if (menuItem && menuItem.length == 0) {
+    const menuExist = await Menu.findOne({menuItemName: menuItemName})
+
+    if (menuExist) {
         res.status(400);
         throw new Error("No menu item selected");
       }
 
-      const menu = new Menu({
-          menuItemName: menuItemName
-         
-      });
+      const menu = await Menu.create({
+        menuItemName,
+        menuItemNamePrice,
+        menuDescription,
+        imageUrl
 
-      const newMenu = await menu.save();
-      res.status(201);
+      })
+
+
+      if(menu){
+          result.status(201).json({
+              _id:menu.id,
+              menuItemName: menu.menuItemName,
+              menuItemNamePrice: menu.menuItemNamePrice,
+              menuDescription: menu.menuDescription,
+              imageUrl: menu.imageUrl
+
+          })
+      }else{
+          result.status(400)
+          throw new Error("item does not exist")
+      }
 
 })
 
-export {menuItem, manuItemPrice} 
+
+
+export {addMenu} 
+
+//eport csv
+// get all by time
+// create
+//method that calculates time
