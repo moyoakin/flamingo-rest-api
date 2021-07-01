@@ -8,7 +8,7 @@ import { protect } from "../middleware/authMiddleware.js";
 
 const orderRoutes = express.Router();
 
-orderRoutes.route("/").post(protect, addOrder);
+orderRoutes.route("/create").post(protect, addOrder);
 
 orderRoutes
   .route("/:id")

@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const menuSchema = mongoose.Schema({
-  menu: [
-    {
-      menuItemName: {
+
+    
+      itemName: {
         type: String,
         require: true,
       },
 
-      menuItemPrice: {
+      itemPrice: {
         type: Number,
         require: true,
       },
@@ -18,12 +18,28 @@ const menuSchema = mongoose.Schema({
         require: true,
       },
 
-      menuDescription: {
+      itemDescription: {
         type: String,
         require: true,
       },
-    },
-  ],
+      status:{
+        type:Boolean,
+        require:true
+      },
+
+      dateCreated:{
+        type:Date,
+        require:true
+      },
+
+      dateDeleted:{
+        type:Date
+        
+      }
+
+
+    
+  
 });
 
 const Menu = mongoose.model("Menu", menuSchema);

@@ -1,33 +1,35 @@
 import asyncHandler from 'express-async-handler';
-import {Menu} from "../models/menuModel.js";
+import Menu from "../models/menuModel.js";
 
 const addMenu = asyncHandler(async(req,res)=>{
-    const { menu } = req.body;
-    console.log(menu);
+    const { itemName, itemDescription,itemPrice, imageUrl } = req.body;
+    
 
-    const menuExist = await Menu.findOne({menuItemName: menuItemName})
+    const menuExist = await Menu.findOne({itemName: itemName})
 
     if (menuExist) {
         res.status(400);
-        throw new Error("No menu item selected");
+        throw new Error(`Menu item ${itemName} already exist`);
       }
 
-      const menu = await Menu.create({
-        menuItemName,
-        menuItemNamePrice,
-        menuDescription,
-        imageUrl
+      const savedMenu = await Menu.create({
+        itemName,
+        itemPrice,
+        itemDescription,
+        imageUrl,
+        status:true,
+        dateCreated:Date.now()
 
       })
 
 
-      if(menu){
-          result.status(201).json({
-              _id:menu.id,
-              menuItemName: menu.menuItemName,
-              menuItemNamePrice: menu.menuItemNamePrice,
-              menuDescription: menu.menuDescription,
-              imageUrl: menu.imageUrl
+      if(savedMenu){
+          res.status(201).json({
+              _id:savedMenu.id,
+              itemName: savedMenu.itemName,
+              itemPrice: savedMenu.itemPrice,
+              itemDescription: savedMenu.itemDescription,
+              imageUrl: savedMenu.imageUrl
 
           })
       }else{
@@ -41,7 +43,5 @@ const addMenu = asyncHandler(async(req,res)=>{
 
 export {addMenu} 
 
-//eport csv
-// get all by time
-// create
-//method that calculates time
+// get all menu
+// delete by ID

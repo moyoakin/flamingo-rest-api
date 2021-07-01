@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 import orderRoutes from "./route/orderRoutes.js";
 import userRoutes from "./route/userRoutes.js";
 import setupProdMiddleWare from "./config/prod.js";
+import menuRoutes from "./route/menuRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -22,5 +23,6 @@ app.use(cors());
 
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/menu",menuRoutes);
 
 app.listen(port, () => console.log(`server started on Port: ${port}`));
